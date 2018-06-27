@@ -32,13 +32,13 @@ contract DappToken {
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
 
-        Transfer(msg.sender, _to, _value);
+        emit Transfer(msg.sender, _to, _value);
         return true;
     }
 
     function approve(address _spender, uint256 _value) public returns (bool success) {
         allowance[msg.sender][_spender] = _value;
-        Approval(msg.sender, _spender, _value);
+        emit Approval(msg.sender, _spender, _value);
         return true;
     }
 
@@ -48,7 +48,7 @@ contract DappToken {
         balanceOf[_from] -= _value;     
         balanceOf[_to] += _value;        // Change the balance
         allowance[_from][msg.sender] -= _value;     // Update the allowance
-        Transfer(_from, _to, _value);   // Transfer event
+        emit Transfer(_from, _to, _value);   // Transfer event
         return true;    // Return a boolean
     }
     
