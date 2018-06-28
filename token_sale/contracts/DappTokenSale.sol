@@ -20,13 +20,20 @@ contract DappTokenSale {
         require(y==0 || (z = x * y) / y == x);
     }
 
-    //Buy Tokens
+    // Buy Tokens
     function buyTokens(uint256 _numberOfTokens) public payable {
         require(msg.value == multiply(_numberOfTokens, tokenPrice));   // Require that value is equal to tokens                               
         require(tokenContract.balanceOf(this) >= _numberOfTokens);   // Require that contract has enough tokens
         require(tokenContract.transfer(msg.sender, _numberOfTokens));   // Require that a transfer is successful
-        tokensSold += _numberOfTokens;   // Keep track of tokenSold
+        tokensSold += _numberOfTokens;   // Keep track of tokensSold
         emit Sell(msg.sender, _numberOfTokens);   // Trigger sell event
+    }
+
+    // Ending Token DappTokenSale
+    function endSale() public {
+        require(msg.sender == admin);   // Require admin
+        require(tokenContract.transfer(admin, tokenContract.balanceOf(this)));  // Transfer remaining dapp tokens to admin
+        selfdestruct(admin);  // Destroy contract
     }
 
 }
