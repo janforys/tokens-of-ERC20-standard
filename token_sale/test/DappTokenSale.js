@@ -82,7 +82,7 @@ contract('DappTokenSale', function(accounts) {
             // Check that token price was reset when self destruct was called
             return tokenSaleInstance.tokenPrice();
         }).then(function(price) {
-            assert.equal(price.toNumber(), 0, 'totken price was reset');
+            assert.equal(price.toNumber(), 0, 'token price was reset');
         });
     });
 
