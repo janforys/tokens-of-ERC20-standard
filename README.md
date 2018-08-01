@@ -1,2 +1,2 @@
-# tokens-of-ERC20-standard
-An ERC-20 Tokens on the Ethereum blockchain.
+# token-of-ERC20-standard
+ERC-20 Token on the Ethereum blockchain.
